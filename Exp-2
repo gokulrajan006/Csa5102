@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+
+void monoSubCipher(char text[], char key[]) {
+    for (int i = 0; text[i] != '\0'; i++) {
+        char ch = text[i];
+        if (ch >= 'A' && ch <= 'Z') {
+            text[i] = key[ch - 'A'] - 32; // Uppercase
+        } else if (ch >= 'a' && ch <= 'z') {
+            text[i] = key[ch - 'a']; // Lowercase
+        }
+    }
+}
+
+int main() {
+    char text[100];
+    char key[26];
+
+    printf("Enter text to encrypt: ");
+    fgets(text, sizeof(text), stdin);
+
+    printf("Enter 26-letter key (e.g., QWERTYUIOPASDFGHJKLZXCVBNM): ");
+    scanf("%s", key);
+
+    monoSubCipher(text, key);
+    printf("Encrypted text: %s\n", text);
+
+    return 0;
+}
